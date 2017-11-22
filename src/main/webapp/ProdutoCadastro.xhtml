@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="template.xhtml">
+        <ui:define name="conteudo">
+            <h:panelGrid columns="2">
+                <p:outputLabel value="Codigo:"/>
+                <p:inputText  value="#{ControllerTeste.produto.codigo}"/>
+                <p:outputLabel value="Nome(Sabor):"/>
+                <p:inputText  value="#{ControllerTeste.produto.nome}"/>
+                <p:outputLabel value="Categoria:"/>
+                <p:inputText  value="#{ControllerTeste.produto.tipo}"/>
+                <p:outputLabel value="Quantidade:"/>
+                <p:inputText size="10"  value="#{ControllerTeste.produto.quantidade}"/>
+                <p:outputLabel value="Custo Compra:"/>
+                <p:inputText size="10"  value="#{ControllerTeste.produto.custoCompra}"/>
+                <p:outputLabel value="Custo Venda:"/>
+                <p:inputText size="10"  value="#{produtoController.produto.custoVenda}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="3">
+                <p:commandButton value="Novo"/>
+                <p:commandButton value="Salvar" action="#{ControllerTeste.inserir()}" />
+                <p:commandButton value="Voltar" action="ProdutoPesquisa.xhtml?faces-redirect=true"/>
+            </h:panelGrid>
+        </ui:define>
+    </ui:composition>
+</html>
