@@ -9,31 +9,40 @@
     <ui:composition template="template.xhtml">
         <ui:define name="conteudo">
             <h:form id="formpesquisa">
-              
-                        <center>
-                            <h:outputText value="Produto"/>
-                        </center>
-            
-                <h:panelGrid columns="4">
-                    <p:outputLabel value="Nome
-                                   :"/>
-                    <p:inputText maxlength="40" size="10"/>
-                    <p:commandButton value="Buscar"/>
+
+                <h:panelGrid columns="2">
+                    <p:commandButton value="Listar Produto" action="#{produtoController.buscarTodos()}" update="proTable"/>
                     <p:commandButton value="Novo" action="ProdutoCadastro.xhtml?faces-redirect=true"/>
                 </h:panelGrid>
-                <p:dataTable emptyMessage="Nenhum registro encontrado...">
-                    <p:column headerText="Código">
 
+                <p:dataTable emptyMessage="Nenhum registro encontrado..." value="#{produtoController.listadeProdutos}"
+                             filteredValue="#{produtoController.listadeProdutosFiltrados}"
+                             var="produto" id="proTable">
+                    <p:column headerText="Código" filterBy="#{produto.codigo}">
+                        <h:outputText value="#{produto.codigo}"/>
                     </p:column>
-                    <p:column headerText="Nome(Sabor)">
+                    <p:column headerText="Nome(Sabor)" filterBy="#{produto.nome}">
+                        <h:outputText value="#{produto.nome}"/>
 
-                    </p:column> <p:column headerText="Categoria">
+                    </p:column> <p:column headerText="Categoria" filterBy="#{produto.tipo}">
+                        <h:outputText value="#{produto.tipo}"/>
 
-                    </p:column> <p:column headerText="Quantidade">
+                    </p:column> <p:column headerText="Quantidade" style="width:100px">
+                        <h:outputText value="#{produto.quantidade}" />
 
-                    </p:column> <p:column headerText="Preço Compra" >
+                    </p:column> <p:column headerText="Preço Compra" style="width:80px">
+                        <h:outputText value="#{produto.custoCompra}"/>
 
-                    </p:column> <p:column headerText="Preço Venda">
+                    </p:column> <p:column headerText="Preço Venda" style="width:80px">
+                        <h:outputText value="#{produto.custoVenda}"/>
+
+                    </p:column> <p:column headerText="Ops" style="width:100px">
+                        <p:commandButton icon="ui-icon-trash" action="ProdutoCadastro.xhtml?faces-redirect=true" style="width:30xp">
+                            
+                        </p:commandButton>
+                        <p:commandButton icon="ui-icon-pencil" action="ProdutoCadastro.xhtml?faces-redirect=true" style="width:30xp">
+                            
+                        </p:commandButton>
 
                     </p:column>
                 </p:dataTable>

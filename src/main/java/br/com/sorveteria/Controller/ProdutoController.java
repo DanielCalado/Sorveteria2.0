@@ -23,6 +23,7 @@ public class ProdutoController{
  private ProdutoModel model = null;
     private Produto produto;
     private List<Produto> ListadeProdutos;
+    private List<Produto> ListadeProdutosFiltrados;
     
 public ProdutoController(){
     model =new ProdutoModel();
@@ -32,9 +33,11 @@ public ProdutoController(){
 
 public void inserir(){
     model.salvar(produto);
+    limpar();
 }
 public void alterar(){
     model.alterar(produto);
+    limpar();
 }
 public void excluir(){
     model.excluir(produto);
@@ -65,8 +68,18 @@ public List<Produto> buscarNome(){
     public void setListadeProdutos(List<Produto> ListadeProdutos) {
         this.ListadeProdutos = ListadeProdutos;
     }
+
+    public List<Produto> getListadeProdutosFiltrados() {
+        return ListadeProdutosFiltrados;
+    }
+
+    public void setListadeProdutosFiltrados(List<Produto> ListadeProdutosFiltrados) {
+        this.ListadeProdutosFiltrados = ListadeProdutosFiltrados;
+    }
+    
 public void limpar(){
     produto = new Produto();
+    buscarTodos();
 }
 }
 

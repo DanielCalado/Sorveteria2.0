@@ -54,7 +54,7 @@ cl.setCliente(cli);
 cl.alterar();
    }
 ///dao.consultarPorNome("yiuh9bhio");*/
-       VendaModel mo = new VendaModel();
+     /*  VendaModel mo = new VendaModel();
        ItensVendaModel ve = new ItensVendaModel();
        FuncionarioController co = new FuncionarioController();
        ProdutoController pro = new ProdutoController();
@@ -69,7 +69,12 @@ cl.alterar();
        pro.setProduto(p);
        pro.inserir();
        ItensVenda it = new ItensVenda(0, 200, 10, v, p);
-       ve.salvar(it);
+       ve.salvar(it);*/
+            ProdutoController pro = new ProdutoController();
+Produto p;
+       p = new Produto(9133, null, null, 0, 0, 0);
+       pro.setProduto(p);
+       pro.excluir();
    }
 }
 

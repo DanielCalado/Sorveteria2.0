@@ -7,25 +7,28 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition template="template.xhtml">
         <ui:define name="conteudo">
+            <h:form>
+                <center>
+                    <h4>Cadastro Produto</h4>
             <h:panelGrid columns="2">
-                <p:outputLabel value="Codigo:"/>
-                <p:inputText  value="#{ControllerTeste.produto.codigo}"/>
                 <p:outputLabel value="Nome(Sabor):"/>
-                <p:inputText  value="#{ControllerTeste.produto.nome}"/>
+                <p:inputText  value="#{produtoController.produto.nome}"/>
                 <p:outputLabel value="Categoria:"/>
-                <p:inputText  value="#{ControllerTeste.produto.tipo}"/>
+                <p:inputText  value="#{produtoController.produto.tipo}"/>
                 <p:outputLabel value="Quantidade:"/>
-                <p:inputText size="10"  value="#{ControllerTeste.produto.quantidade}"/>
+                <p:inputText size="10"  value="#{produtoController.produto.quantidade}"/>
                 <p:outputLabel value="Custo Compra:"/>
-                <p:inputText size="10"  value="#{ControllerTeste.produto.custoCompra}"/>
+                <p:inputText size="10"  value="#{produtoController.produto.custoCompra}"/>
                 <p:outputLabel value="Custo Venda:"/>
                 <p:inputText size="10"  value="#{produtoController.produto.custoVenda}"/>
             </h:panelGrid>
             <h:panelGrid columns="3">
-                <p:commandButton value="Novo"/>
-                <p:commandButton value="Salvar" action="#{ControllerTeste.inserir()}" />
+                <p:commandButton value="Salvar" action="#{produtoController.inserir()}" update="@form"/>                
+                <p:commandButton value="Limpar" action="#{produtoController.limpar()}" update="@form"/>
                 <p:commandButton value="Voltar" action="ProdutoPesquisa.xhtml?faces-redirect=true"/>
             </h:panelGrid>
+                </center>
+            </h:form>
         </ui:define>
     </ui:composition>
 </html>
