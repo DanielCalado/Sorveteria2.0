@@ -27,23 +27,31 @@ public class ItensVenda implements Serializable {
     @GeneratedValue
     private int id;
     private double valor;
+    private String nome;
     private int quantidade;
-    @ManyToOne(cascade=CascadeType.ALL)
-    private Venda venda;
     @ManyToOne(cascade=CascadeType.ALL)
     private Produto produto;
 
-    public ItensVenda(int id, double valor, int quantidade, Venda venda, Produto produto) {
+    public ItensVenda(String nome, int id, double valor, int quantidade, Produto produto) {
         this.id = id;
         this.valor = valor;
         this.quantidade = quantidade;
-        this.venda = venda;
         this.produto = produto;
+        this.nome = nome;
     }
 
     public ItensVenda() {
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    
     public int getId() {
         return id;
     }
@@ -66,14 +74,6 @@ public class ItensVenda implements Serializable {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
-    }
-
-    public Venda getVenda() {
-        return venda;
-    }
-
-    public void setVenda(Venda venda) {
-        this.venda = venda;
     }
 
     public Produto getProduto() {
@@ -111,7 +111,7 @@ public class ItensVenda implements Serializable {
 
     @Override
     public String toString() {
-        return "ItensVenda{" + "id=" + id + ", valor=" + valor + ", quantidade=" + quantidade + ", venda=" + venda + ", produto=" + produto + '}';
+        return "ItensVenda{" + "id=" + id + ", valor=" + valor + ", quantidade=" + quantidade + ", produto=" + produto + '}';
     }
     
     

@@ -41,16 +41,13 @@ public void alterar(){
 }
 public void excluir(){
     model.excluir(produto);
-    buscarTodos();
+    limpar();
 }
 public void consultar(){
     model.consultar(produto.getCodigo());
 }
 public void buscarTodos(){
     ListadeProdutos = model.consultarTodos();
-}
-public List<Produto> buscarNome(){
-    return model.consultarPorNome(produto.getNome());
 }
 
     public Produto getProduto() {

@@ -21,23 +21,23 @@
                                       requiredMessage="Categoria é um Campo Obrigatorio!"/>
                         <p:outputLabel value="Quantidade:"/>
                         <p:inputText size="10"  value="#{produtoController.produto.quantidade}" required="true"
-                                      requiredMessage="Quantidade é um Campo Obrigatorio!"/>
+                                     requiredMessage="Quantidade é um Campo Obrigatorio!"/>
                         <p:outputLabel value="Custo Compra:"/>
                         <p:inputText size="10"  value="#{produtoController.produto.custoCompra}" required="true"
-                                      requiredMessage="Custo Compra é um Campo Obrigatorio!"/>
+                                     requiredMessage="Custo Compra é um Campo Obrigatorio!"/>
                         <p:outputLabel value="Custo Venda:"/>
                         <p:inputText size="10"  value="#{produtoController.produto.custoVenda}" required="true"
-                                      requiredMessage="Custo Venda é um Campo Obrigatorio!"/>
+                                     requiredMessage="Custo Venda é um Campo Obrigatorio!"/>
                     </h:panelGrid>
                     <h:panelGrid columns="3">
-                        <p:commandButton value="Salvar" action="#{produtoController.inserir()}" update="@form"/>
+                        <p:commandButton value="Alterar" action="#{produtoController.alterar()}" update="@form"/>
                         <h1></h1>
-                        <p:commandButton value="Limpar" action="#{produtoController.limpar()}" update="@form"/>
+                        <p:commandButton value="Excluir" action="#{produtoController.excluir()}" update="@form"/>
                     </h:panelGrid>
                 </center>
             </h:form>
-            <center>     <p:commandButton value="Voltar" action="ProdutoPesquisa.xhtml?faces-redirect=true"/></center>
-           
+            <p:commandButton value="Voltar" action="ProdutoPesquisa.xhtml?faces-redirect=true"/>
+
         </ui:define>
     </ui:composition>
 </html>

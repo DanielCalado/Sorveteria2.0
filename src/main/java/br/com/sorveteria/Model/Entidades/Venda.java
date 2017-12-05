@@ -7,6 +7,7 @@ package br.com.sorveteria.Model.Entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,18 +36,40 @@ public class Venda implements Serializable{
     @Temporal(value = TemporalType.TIMESTAMP)
     @Column(length = 20)
     private Date horario;
+    private String ComsuFinal;
     private double valor;
     @ManyToOne(cascade=CascadeType.ALL)
     private Funcionario funcionario;
+    @OneToMany(cascade=CascadeType.ALL)
+    private List<ItensVenda> itensVenda;
 
-    public Venda(int id, Date horario, double valor, Funcionario funcionario) {
+    public Venda(int id, String ComsuFinal, Date horario, double valor, Funcionario funcionario, List<ItensVenda> itensVenda) {
         this.id = id;
         this.horario = horario;
         this.valor = valor;
         this.funcionario = funcionario;
+        this.itensVenda = itensVenda;
+        this.ComsuFinal = ComsuFinal;
     }
+    
 
     public Venda() {
+    }
+
+    public void setComsuFinal(String ComsuFinal) {
+        this.ComsuFinal = ComsuFinal;
+    }
+
+    public String getComsuFinal() {
+        return ComsuFinal;
+    }
+
+    public void setItensVenda(List<ItensVenda> itensVenda) {
+        this.itensVenda = itensVenda;
+    }
+
+    public List<ItensVenda> getItensVenda() {
+        return itensVenda;
     }
 
     public int getId() {

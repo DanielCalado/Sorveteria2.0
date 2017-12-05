@@ -21,7 +21,7 @@ import org.hibernate.Transaction;
  */
 public class ProdutoDAO implements Serializable,ProdutoInterfaceDAO{ 
     private static ProdutoDAO instance;
-    private ProdutoDAO(){
+    public ProdutoDAO(){
     
 } 
     public static ProdutoDAO getInstance(){

@@ -6,6 +6,7 @@
 package br.com.sorveteria.Model.Entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
@@ -28,16 +29,37 @@ public class Funcionario extends Pessoa implements Serializable {
     private String Login;
     @Column(length = 30)
     private String senha;
+    @Column(length = 30)
+    private String cargo;
+    private Date dataAdmissao;
 
-    public Funcionario(String Login, String senha, int id, String nome, String cpf, String telefone, String email, Endereco endereco) {
+    public Funcionario(Date dataAdmissao, String cargo, String Login, String senha, int id, String nome, String cpf, String telefone, String email, Endereco endereco) {
         super(id, nome, cpf, telefone, email, endereco);
         this.Login = Login;
         this.senha = senha;
+        this.cargo = cargo;
+        this.dataAdmissao = dataAdmissao;
     }
 
 
 
     public Funcionario() {
+    }
+
+    public void setDataAdmissao(Date dataAdmissao) {
+        this.dataAdmissao = dataAdmissao;
+    }
+
+    public Date getDataAdmissao() {
+        return dataAdmissao;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
     public String getLogin() {

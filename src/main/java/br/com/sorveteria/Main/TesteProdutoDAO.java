@@ -8,6 +8,8 @@ package br.com.sorveteria.Main;
 import br.com.sorveteria.Controller.ClienteController;
 import br.com.sorveteria.Controller.FuncionarioController;
 import br.com.sorveteria.Controller.ProdutoController;
+import br.com.sorveteria.Controller.VendaController;
+import br.com.sorveteria.Model.Builder.VendaBuilder;
 import br.com.sorveteria.Model.ClienteModel;
 import br.com.sorveteria.Model.DAO.FuncionarioDAO;
 import br.com.sorveteria.Model.DAO.ProdutoDAO;
@@ -30,15 +32,21 @@ import java.util.Date;
  */
 public class TesteProdutoDAO {
     
-   public static void main(String[] args){
-/* ProdutoController c = new ProdutoController();
+   public static void main(String[] args){/*
+ProdutoController c = new ProdutoController();
 Produto p = new Produto(0, "gelados", "Sorvete", 100, 10, 20);
-c.setProduto(p);
-c.inserir();
+Produto p1 = new Produto(0, "gelados", "Sorvete", 100, 10, 20);
+Produto p2 = new Produto(0, "gelados", "Sorvete", 100, 10, 20);
+Produto p3 = new Produto(0, "gelados", "Sorvete", 100, 10, 20);
 
-Endereco end  = new Endereco(0, "duque de caxia", 54, "sao joao", "planalto");
+c.setProduto(p);
+
+
+c.inserir();
+/*
+Endereco end  = new Endereco(0, "eg", 0, "grs", "ef", "erg");
 Cliente cli = new Cliente(400, 0, "carlos", "123.234.567-88", "098914354", "dkpaz03@gmail.com", end);
-Funcionario fun = new Funcionario("daniel", "daniel", 0, "daniel calado", "123.654.897-00", "098543235", "dkpas@df.cp", end);   
+Funcionario fun = new Funcionario(null, "frg", "rg", "rg", 0, "rg", "f", "rg", "tg", end);   
   
 FuncionarioController fu = new FuncionarioController();
 fu.setFuncionario(fun);
@@ -70,11 +78,18 @@ cl.alterar();
        pro.inserir();
        ItensVenda it = new ItensVenda(0, 200, 10, v, p);
        ve.salvar(it);*/
-            ProdutoController pro = new ProdutoController();
-Produto p;
-       p = new Produto(9133, null, null, 0, 0, 0);
-       pro.setProduto(p);
-       pro.excluir();
+VendaController v = new VendaController();
+VendaBuilder vb = new VendaBuilder();
+FuncionarioDAO fu = new FuncionarioDAO();
+ProdutoDAO pro = new ProdutoDAO();
+Venda ven = null;
+ItensVenda itv = new ItensVenda("cafe", 0, 3.59, 2, pro.recuperar(1910));
+vb.funcionario(fu.recuperar(1));
+vb.horario(new Date());
+vb.itemvenda(itv);
+vb.comsuFinal("cicero s calado");
+v.setVendaBuilder(vb);
+v.inserir();
    }
 }
 

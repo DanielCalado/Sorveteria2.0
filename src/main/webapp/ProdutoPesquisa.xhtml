@@ -7,47 +7,45 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:composition template="template.xhtml">
+             <ui:define name="metadata">
+                <f:metadata>
+                <f:event listener="#{produtoController.buscarTodos()}" type="preRenderView"/>
+                </f:metadata>
+            </ui:define>
         <ui:define name="conteudo">
-            <h:form id="formpesquisa">
+        <h:form id="formpesquisa">
+            <p:growl id="growl" life="10000" showDetail="true" showSummary="false"/>               
+            <h:panelGrid columns="4">
+                <p:commandButton value="Novo" action="ProdutoCadastro.xhtml?faces-redirect=true"/>
+                <p:commandButton value="Excluir" action="AlterareDeletarProduto.xhtml?faces-redirect=true"/>
+                <p:commandButton value="Alterar" action="AlterareDeletarProduto.xhtml?faces-redirect=true"/>                    
+            </h:panelGrid>
 
-                <h:panelGrid columns="2">
-                    <p:commandButton value="Listar Produto" action="#{produtoController.buscarTodos()}" update="proTable"/>
-                    <p:commandButton value="Novo" action="ProdutoCadastro.xhtml?faces-redirect=true"/>
-                </h:panelGrid>
+            <p:dataTable emptyMessage="Nenhum registro encontrado..." value="#{produtoController.listadeProdutos}"
+                         filteredValue="#{produtoController.listadeProdutosFiltrados}"
+                         var="produto" id="proTable" selectionMode="single" selection="#{produtoController.produto}"
+                         rowKey="#{produto.codigo}">
+                <p:column headerText="Código" filterBy="#{produto.codigo}">
+                    <h:outputText value="#{produto.codigo}"/>
+                </p:column>
+                <p:column headerText="Nome(Sabor)" filterBy="#{produto.nome}">
+                    <h:outputText value="#{produto.nome}"/>
 
-                <p:dataTable emptyMessage="Nenhum registro encontrado..." value="#{produtoController.listadeProdutos}"
-                             filteredValue="#{produtoController.listadeProdutosFiltrados}"
-                             var="produto" id="proTable">
-                    <p:column headerText="Código" filterBy="#{produto.codigo}">
-                        <h:outputText value="#{produto.codigo}"/>
-                    </p:column>
-                    <p:column headerText="Nome(Sabor)" filterBy="#{produto.nome}">
-                        <h:outputText value="#{produto.nome}"/>
+                </p:column> <p:column headerText="Categoria" filterBy="#{produto.tipo}">
+                    <h:outputText value="#{produto.tipo}"/>
 
-                    </p:column> <p:column headerText="Categoria" filterBy="#{produto.tipo}">
-                        <h:outputText value="#{produto.tipo}"/>
+                </p:column> <p:column headerText="Quantidade" style="width:100px">
+                    <h:outputText value="#{produto.quantidade}" />
 
-                    </p:column> <p:column headerText="Quantidade" style="width:100px">
-                        <h:outputText value="#{produto.quantidade}" />
+                </p:column> <p:column headerText="Preço Compra" style="width:80px">
+                    <h:outputText value="#{produto.custoCompra}"/>
 
-                    </p:column> <p:column headerText="Preço Compra" style="width:80px">
-                        <h:outputText value="#{produto.custoCompra}"/>
+                </p:column> <p:column headerText="Preço Venda" style="width:80px">
+                    <h:outputText value="#{produto.custoVenda}"/>
+                </p:column>
+            </p:dataTable>
 
-                    </p:column> <p:column headerText="Preço Venda" style="width:80px">
-                        <h:outputText value="#{produto.custoVenda}"/>
-
-                    </p:column> <p:column headerText="Ops" style="width:100px">
-                        <p:commandButton icon="ui-icon-trash" action="ProdutoCadastro.xhtml?faces-redirect=true" style="width:30xp">
-                            
-                        </p:commandButton>
-                        <p:commandButton icon="ui-icon-pencil" action="ProdutoCadastro.xhtml?faces-redirect=true" style="width:30xp">
-                            
-                        </p:commandButton>
-
-                    </p:column>
-                </p:dataTable>
-
-            </h:form>
-        </ui:define>
-    </ui:composition>
+        </h:form>
+    </ui:define>
+</ui:composition>
 </html>

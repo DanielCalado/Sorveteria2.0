@@ -8,6 +8,7 @@ package br.com.sorveteria.Model;
 import br.com.sorveteria.Model.Util.Messages;
 import br.com.sorveteria.Model.DAO.ProdutoDAO;
 import br.com.sorveteria.Model.Entidades.Produto;
+import br.com.sorveteria.Model.Util.SessionUtil;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
@@ -36,7 +37,7 @@ public class ProdutoModel implements Serializable {
             if (novo == null) {
                 ProdutoDAO.getInstance().inserir(pro);
                 produto = new Produto();
-                Messages.getInstance().adicionarMensagem(null, "Produto efetuado com sucesso!", FacesMessage.SEVERITY_INFO);
+                Messages.getInstance().adicionarMensagem(null, "Produto cadastrado com sucesso!", FacesMessage.SEVERITY_INFO);
 
             } else {
                 Messages.getInstance().adicionarMensagem(null, "Codigo já cadastrado. Precione salvar novamente!", FacesMessage.SEVERITY_WARN);
@@ -64,6 +65,7 @@ public class ProdutoModel implements Serializable {
     public void excluir(Produto pro) {
         try {
             ProdutoDAO.getInstance().deletar(pro);
+            Messages.getInstance().adicionarMensagem(null, "Produto deletado com sucesso!", FacesMessage.SEVERITY_INFO);
             produto = new Produto();
         } catch (Exception ex) {
             System.out.println("Erro ao executar metodo salvar!");
@@ -75,10 +77,7 @@ public class ProdutoModel implements Serializable {
         this.produto = ProdutoDAO.getInstance().recuperar(codigo);
 
     }
-    public List<Produto> consultarPorNome(String nome) {
-        return ProdutoDAO.getInstance().recuperarPorNome(nome);
 
-    }
     public List<Produto> consultarTodos() {
         try {
             return ProdutoDAO.getInstance().recuperarTodos();
@@ -88,7 +87,7 @@ public class ProdutoModel implements Serializable {
         }
         return null;
     }
-
+    
     public Produto getProduto() {
         return produto;
     }

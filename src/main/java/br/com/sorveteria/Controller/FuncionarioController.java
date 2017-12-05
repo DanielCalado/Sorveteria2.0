@@ -7,6 +7,7 @@ package br.com.sorveteria.Controller;
 
 import br.com.sorveteria.Model.Entidades.Funcionario;
 import br.com.sorveteria.Model.FuncionarioModel;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -20,10 +21,12 @@ import javax.faces.bean.SessionScoped;
 public class FuncionarioController {
     private FuncionarioModel model = null;
     private Funcionario funcionario;
+    private List<Funcionario> listadeFuncionarios = null;
     
 public FuncionarioController(){
     model =new FuncionarioModel();
     funcionario = new Funcionario();
+    listadeFuncionarios = new ArrayList<>();
 }
 
 public void inserir(){
@@ -41,8 +44,8 @@ public void consultar(){
 public void consultarCPF(){
     model.consultarPorCPF(funcionario.getCpf());
 }
-public List<Funcionario> buscarTodos(){
-    return model.consultarTodos();
+public void buscarTodos(){
+    listadeFuncionarios = model.consultarTodos();
 }
 public String login(){
     model.validaLogin(funcionario.getLogin(),funcionario.getSenha());
@@ -52,6 +55,9 @@ public String logout(){
     model.logout();
  return "Login.xhtml";
   
+}
+public void limpar(){
+    funcionario = new Funcionario();
 }
 
     public Funcionario getFuncionario() {
